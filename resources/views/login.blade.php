@@ -81,7 +81,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Laravel Simple REST API
+                    Web login is disabled for now.
                 </div>
             </div>
         </div>
