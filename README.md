@@ -102,6 +102,56 @@ Bellow are the all resources API endpoints -
         PUT    | api/subscribers/{subscriber} | api,auth:api 
 
         DELETE | api/subscribers/{subscriber}| api,auth:api 
+        
+        
+## API Authentication 
+
+All the api endpoints are protected by a simple API Authentication process. To access the resource data, the request header need api_token field. The **api_token** value need to be taken from the **api/login** API by passing valid username and password.
+    
+   **Example Of Login API request**
+    
+        $ curl -X POST appurl/api/login \
+        -H "Accept: application/json" \
+        -H "Content-type: application/json" \
+        -d "{\"email\": \"user@user.com\", \"password\": \"1234\" }"
+        
+   **Response Of Valid Login API**
+        
+        {
+            "data": {
+                "id": 3,
+                "name": "Default",
+                "email": "user@user.com",
+                "email_verified_at": "2018-11-23 15:01:31",
+                "api_token": "fHsLHoHXpdqgYH8VPBFn1yEa5NV3NrxmizZUMuMxtSxZr60HfB",
+                "created_at": "2018-11-23 15:01:31",
+                "updated_at": "2018-11-26 16:27:07"
+            }
+        }
+
+
+
+To send the token in a request, you can do it by sending an attribute api_token as a bearer token in the request headers in the form of **Authorization: Bearer fHsLHoHXpdqgYH8VPBFn1yEa5NV3NrxmizZUMuMxtSxZr60HfB**
+
+   **Example Of Api Request Using Auth Api Token**
+    
+        $ curl -X POST appurl/api/subscribers \
+        -H "Accept: application/json" \
+        -H "Authorization: Bearer fHsLHoHXpdqgYH8VPBFn1yEa5NV3NrxmizZUMuMxtSxZr60HfB" \
+        -H "Content-type: application/json" \
+        -d "{\"email\": \"user@user.com\", \"password\": \"1234\" }"
+
+
+## Test Case 
+
+I have created several test case to test all the API endpoints by using Laravel PHPUnit with a phpunit.xml set up.
+
+There are 16 test cases written to test the API endpoint crud operation, present in the **tests/Feature** folder. You can write more test case to test other scenario as well by adding test method in their respective file.
+
+To execute all the test case, move to the project root folder in terminal and then run -
+        
+        composer test 
+
 
 ## Third party library used and configuration
 
