@@ -102,3 +102,12 @@ Bellow are the all resources API endpoints -
         PUT    | api/subscribers/{subscriber} | api,auth:api 
 
         DELETE | api/subscribers/{subscriber}| api,auth:api 
+
+## Third party library used and configuration
+
+I have used a third party librery for email domain validation check. The package I have used here is https://github.com/unicodeveloper/laravel-email-validator#install .
+
+Set the API key for your <a href="https://quickemailverification.com/" target="_blank"> quick email verification  account </a> in the config/emailValidator.php file. This is needed to check the active email domain.
+
+
+
