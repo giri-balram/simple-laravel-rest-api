@@ -14,7 +14,11 @@ class Authenticate extends Middleware
      */
     protected function redirectTo($request)
     {
-        if (! $request->expectsJson()) {
+        if ($request->expectsJson()) {
+            return json_encode([
+                'error' => 'invalid api token.'
+            ], 404); // Status code here
+        } else {
             return route('login');
         }
     }

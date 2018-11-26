@@ -27,4 +27,13 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+
+    public function generateToken()
+    {
+        $this->api_token = str_random(50);
+        $this->save();
+
+        return $this->api_token;
+    }
 }
